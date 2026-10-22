@@ -12,7 +12,7 @@ import sys
 import subprocess
 import time
 
-VERSION = '0.1.2'
+VERSION = '0.1.3'
 
 
 def roi(frame, box):
@@ -103,7 +103,8 @@ class Tracker:
             if new_action:
                 self.action_id += 1
                 self.last_confirmed_state = state
-            self.pending_actor = self.actor
+            if self.faction != 'unknown':
+                self.pending_actor = self.actor
             if self.actor is not None and new_action:
                 self.actions.append({'action_id': self.action_id, 'actor': self.actor,
                                      'observed_at': t, 'damage_observed': False})
@@ -129,7 +130,7 @@ class Tracker:
             return
         handover = (self.current is not None and self.pending_actor is not None
                     and self.action_id != self.current.get('action_id') and changed)
-        if changed and self.actor is None and self.faction != 'enemy' and self.current is not None:
+        if changed and self.actor is None and self.faction == 'ally' and self.current is not None:
             self.finish_event('number_changed_with_unknown_actor')
         if handover:
             self.finish_event('actor_handover_and_number_change')

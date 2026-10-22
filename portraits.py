@@ -28,16 +28,40 @@ class AssetMatcher:
         for e in self.entries:
             image=cv2.imread(str(path.parent/e['file']),cv2.IMREAD_UNCHANGED)
             if image is None or image.shape[2]!=4: raise ValueError('Expected RGBA portrait: '+e['file'])
-            for size in profile.get('portrait_widths_at_1920',[110,120,130,140]):
-                w=round(size*width/1920);h=round(w*image.shape[0]/image.shape[1])
-                resized=cv2.resize(image,(w,h))
-                mask=(resized[:,:,3]>240).astype(np.uint8)*255
-                self.templates.append((e,resized[:,:,:3],mask))
+            widths = profile.get(
+                'portrait_widths_at_1920',
+                list(range(95, 216, 10))
+            )
+            windows = [
+                (.18, .12, .75, .75),
+                (.15, .08, .70, .58),
+            ]
+
+            for size in widths:
+                w = round(size * width / 1920)
+                h = round(w * image.shape[0] / image.shape[1])
+                resized = cv2.resize(image, (w, h))
+
+                for x1, y1, x2, y2 in windows:
+                    face = resized[
+                        round(y1*h):round(y2*h),
+                        round(x1*w):round(x2*w)
+                    ]
+                    mask = (
+                        face[:, :, 3] > 240
+                    ).astype(np.uint8) * 255
+
+                    if np.count_nonzero(mask) < 20:
+                        continue
+
+                    self.templates.append(
+                        (e, face[:, :, :3], mask)
+                    )
     def match(self,crop):
         owner_scores={};winner={}
         for e,tpl,mask in self.templates:
             if tpl.shape[0]>crop.shape[0] or tpl.shape[1]>crop.shape[1]:continue
-            scoremap=cv2.matchTemplate(crop,tpl,cv2.TM_CCORR_NORMED,mask=mask)
+            scoremap=cv2.matchTemplate(crop,tpl,cv2.TM_CCOEFF_NORMED,mask=mask)
             score=float(np.nan_to_num(scoremap,nan=-1,posinf=-1,neginf=-1).max())
             owner=e['character']
             if score>owner_scores.get(owner,-1):owner_scores[owner]=score;winner[owner]=e['id']
