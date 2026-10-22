@@ -12,7 +12,7 @@ import sys
 import subprocess
 import time
 
-VERSION = '0.1.5'
+VERSION = '0.1.6'
 
 
 def roi(frame, box):
@@ -156,6 +156,7 @@ class Tracker:
         self.panel_gap_seconds = panel_gap_seconds
         self.panel_absent_since = None
         self.resumed_gap = 0.0
+        self.recent_ally = None
 
     def finish_event(self, reason):
         if self.current is not None:
@@ -177,6 +178,13 @@ class Tracker:
             if self.actor is not None and new_action:
                 self.actions.append({'action_id': self.action_id, 'actor': self.actor,
                                      'observed_at': t, 'damage_observed': False})
+        
+        if (
+            actor is not None
+            and faction == 'ally'
+            and (self.actor, self.faction) == (actor, 'ally')
+        ):
+            self.recent_ally = {'actor': actor, 't': t}
         if not panel_present:
             if self.panel_absent_since is None:
                 self.panel_absent_since = t
@@ -198,6 +206,34 @@ class Tracker:
             return
         if not self.damage_filter.push(value):
             return
+        candidate = (
+            self.current.get('owner_candidate')
+            if self.current else None
+        )
+
+        if (
+            self.current is not None
+            and self.current['actor'] is None
+            and candidate is not None
+            and 0 <= self.current['start'] - candidate['t'] <= 1.0
+            and 0 <= t - self.current['start'] <= 1.0
+            and faction == 'ally'
+            and self.faction == 'ally'
+            and actor == self.actor == candidate['actor']
+            and value == self.current['damage']
+        ):
+            self.current.update(
+                actor=actor,
+                action_id=self.action_id,
+                attribution='same_ally_before_and_after_marker_loss',
+            )
+
+            for action in self.actions:
+                if action['action_id'] == self.action_id:
+                    action['damage_observed'] = True
+
+            self.pending_actor = None
+
         changed = value != self.last_value
 
         handover = (
@@ -277,7 +313,11 @@ class Tracker:
                             'last_read': t, 'damage': value, 'stable_updates': 1,
                             'evidence_t': t, 'reading_warnings': [],
                             'attribution': 'pending_actor_on_number_change' if handover else 'visible_actor',
-                            'needs_review': True}
+                            'needs_review': True,
+                            'owner_candidate': (
+                                dict(self.recent_ally)
+                                if self.recent_ally else None
+                            )}
             if owner is None:
                 self.current['attribution'] = 'unattributed'
             for action in self.actions:
