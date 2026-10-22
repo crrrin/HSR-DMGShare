@@ -1190,6 +1190,120 @@
       "mapping_source": "user supplied",
       "file": "assets/portraits/1100101.png",
       "detect_actor": true
+    },
+    {
+      "id": "11402",
+      "character_id": "1402",
+      "character": "Aglaea",
+      "variant": "memosprite",
+      "kind": "summon",
+      "subtype": "memosprite",
+      "mapping_source": "user supplied; filenames confirmed",
+      "file": "assets/portraits/11402.png",
+      "detect_actor": true
+    },
+    {
+      "id": "11407",
+      "character_id": "1407",
+      "character": "Castorice",
+      "variant": "memosprite",
+      "kind": "summon",
+      "subtype": "memosprite",
+      "mapping_source": "user supplied; filenames confirmed",
+      "file": "assets/portraits/11407.png",
+      "detect_actor": true
+    },
+    {
+      "id": "11409",
+      "character_id": "1409",
+      "character": "Hyacine",
+      "variant": "memosprite",
+      "kind": "summon",
+      "subtype": "memosprite",
+      "mapping_source": "user supplied; filenames confirmed",
+      "file": "assets/portraits/11409.png",
+      "detect_actor": true
+    },
+    {
+      "id": "11413",
+      "character_id": "1413",
+      "character": "Evernight",
+      "variant": "memosprite base",
+      "kind": "summon",
+      "subtype": "memosprite",
+      "mapping_source": "user supplied; filenames confirmed",
+      "file": "assets/portraits/11413.png",
+      "detect_actor": true
+    },
+    {
+      "id": "11413_02",
+      "character_id": "1413",
+      "character": "Evernight",
+      "variant": "memosprite enhanced",
+      "kind": "summon",
+      "subtype": "memosprite",
+      "mapping_source": "user supplied; filenames confirmed",
+      "file": "assets/portraits/11413_02.png",
+      "detect_actor": true
+    },
+    {
+      "id": "11415",
+      "character_id": "1415",
+      "character": "Cyrene",
+      "variant": "memosprite",
+      "kind": "summon",
+      "subtype": "memosprite",
+      "mapping_source": "user supplied; filenames confirmed",
+      "file": "assets/portraits/11415.png",
+      "detect_actor": true
+    },
+    {
+      "id": "11512",
+      "character_id": "1512",
+      "character": "Robin • Summeretto",
+      "variant": "memosprite level 1",
+      "kind": "summon",
+      "subtype": "memosprite",
+      "mapping_source": "user supplied; filenames confirmed",
+      "file": "assets/portraits/11512.png",
+      "detect_actor": true
+    },
+    {
+      "id": "11512_02",
+      "character_id": "1512",
+      "character": "Robin • Summeretto",
+      "variant": "memosprite level 2",
+      "kind": "summon",
+      "subtype": "memosprite",
+      "mapping_source": "user supplied; filenames confirmed",
+      "file": "assets/portraits/11512_02.png",
+      "detect_actor": true
+    },
+    {
+      "id": "11512_03",
+      "character_id": "1512",
+      "character": "Robin • Summeretto",
+      "variant": "memosprite level 3",
+      "kind": "summon",
+      "subtype": "memosprite",
+      "mapping_source": "user supplied; filenames confirmed",
+      "file": "assets/portraits/11512_03.png",
+      "detect_actor": true
+    },
+    {
+      "id": "18007",
+      "character_id": "8007",
+      "character": "Trailblazer",
+      "variant": "Remembrance memosprite",
+      "kind": "summon",
+      "subtype": "memosprite",
+      "mapping_source": "user supplied; filenames confirmed",
+      "file": "assets/portraits/18007.png",
+      "detect_actor": true,
+      "owner_character_ids": [
+        "8007",
+        "8008"
+      ]
     }
   ]
 }

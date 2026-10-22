@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+- Added ten memosprite portraits, aggregated under their owning characters.
+- Used filenames 11512, 11512_02 and 11512_03 for Robin Summeretto.
+- Enabled Remembrance Trailblazer's memosprite for IDs 8007 and 8008.
+
 ## 0.1.1
 
 - Cyan/red marker evidence gates portrait matching; unclear markers remain unknown.

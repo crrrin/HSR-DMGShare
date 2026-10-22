@@ -9,8 +9,18 @@ class AssetMatcher:
         path=profile_path.parent/profile['catalog']
         entries=json.loads(path.read_text(encoding='utf8'))['entries']
         selected=set(team)
-        self.entries=[e for e in entries if e['detect_actor'] and (e['character_id'] in selected or e['character'] in selected)]
-        known={e['character'] for e in self.entries}|{e['character_id'] for e in self.entries}
+        self.entries = [
+            e for e in entries
+            if e['detect_actor'] and (
+                set(e.get('owner_character_ids', [e['character_id']])) & selected
+                or e['character'] in selected
+            )
+        ]
+        known = {e['character'] for e in self.entries} | {
+            ident
+            for e in self.entries
+            for ident in e.get('owner_character_ids', [e['character_id']])
+        }
         if selected-known: raise ValueError('Unknown team members: '+', '.join(sorted(selected-known)))
         if not self.entries: raise ValueError('Specify --team with character names or IDs')
         self.owners={e['character']:0 for e in self.entries}
