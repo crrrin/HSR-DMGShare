@@ -12,7 +12,7 @@ import sys
 import subprocess
 import time
 
-VERSION = '0.1.3'
+VERSION = '0.1.5'
 
 
 def roi(frame, box):
@@ -70,10 +70,76 @@ class Stable:
             self.candidate, self.n = value, 1
         return self.n >= self.count
 
+class PortraitRecovery:
+    def __init__(self, profile, fps):
+        self.threshold = profile.get('portrait_threshold', .7)
+        self.margin = profile.get('portrait_margin', .08)
+        self.floor = max(.67, self.threshold - .03)
+        self.recovery_margin = max(.10, self.margin)
+        self.max_gap = 1.8 / fps
+        self.key = None
+        self.count = 0
+        self.since = None
+        self.last_t = None
+
+    def select(self, t, actor, variant, scores, faction):
+        best = scores[0][0] if scores else -1
+        margin = best - scores[1][0] if len(scores) > 1 else best
+
+        eligible = (
+            faction == 'ally'
+            and actor is not None
+            and variant is not None
+            and best >= self.floor
+            and margin >= self.recovery_margin
+        )
+
+        if eligible:
+            key = (actor, variant)
+            if (
+                key != self.key
+                or self.last_t is None
+                or t - self.last_t > self.max_gap
+            ):
+                self.key, self.count, self.since = key, 1, t
+            else:
+                self.count += 1
+            self.last_t = t
+        else:
+            self.key = None
+            self.count = 0
+            self.since = None
+            self.last_t = None
+
+        normal = (
+            faction == 'ally'
+            and best >= self.threshold
+            and margin >= self.margin
+        )
+        recovered = (
+            eligible
+            and self.count >= 4
+            and t - self.since >= .25
+        )
+
+        accepted = actor if normal or recovered else None
+        return accepted, {
+            'method': (
+                'normal' if normal
+                else 'repeated_borderline' if recovered
+                else 'rejected'
+            ),
+            'candidate': actor,
+            'variant': variant,
+            'best': round(best, 4),
+            'margin': round(margin, 4),
+            'samples': self.count,
+            'since': self.since,
+        }
 
 class Tracker:
     """The displayed owner is deliberately independent from the current actor."""
-    def __init__(self, stable_frames=2):
+    def __init__(self, stable_frames=2, panel_gap_seconds=1.0):
         self.actor_filter = Stable(stable_frames)
         self.damage_filter = Stable(stable_frames)
         self.actor = None
@@ -87,6 +153,9 @@ class Tracker:
         self.action_id = 0
         self.actions = []
         self.last_confirmed_state = None
+        self.panel_gap_seconds = panel_gap_seconds
+        self.panel_absent_since = None
+        self.resumed_gap = 0.0
 
     def finish_event(self, reason):
         if self.current is not None:
@@ -109,35 +178,100 @@ class Tracker:
                 self.actions.append({'action_id': self.action_id, 'actor': self.actor,
                                      'observed_at': t, 'damage_observed': False})
         if not panel_present:
-            if self.damage_filter.push('absent'):
-                self.finish_event('panel_absent')
+            if self.panel_absent_since is None:
+                self.panel_absent_since = t
+
+            self.damage_filter.push('absent')
+
+            if t - self.panel_absent_since >= self.panel_gap_seconds:
+                self.finish_event('panel_absent_timeout')
                 self.blank = True
                 self.last_value = None
             return
+
+        if self.panel_absent_since is not None:
+            self.resumed_gap = t - self.panel_absent_since
+
+        self.panel_absent_since = None
         if value is None:
             self.damage_filter.push('unreadable')
             return
         if not self.damage_filter.push(value):
             return
         changed = value != self.last_value
+
+        handover = (
+            self.current is not None
+            and self.pending_actor is not None
+            and self.action_id != self.current.get('action_id')
+            and changed
+        )
+
+        gap_reset = (
+            changed
+            and self.current is not None
+            and self.resumed_gap >= .25
+        )
+
+        # Hold lower readings instead of immediately replacing a total.
+        # Accept a lower replacement only with evidence of a new action
+        # or a panel reset, and at least three consecutive readings.
+        if self.current is not None and value < self.current['damage']:
+            warning = {
+                'kind': 'lower_total_held',
+                'previous': self.current['damage'],
+                'value': value,
+            }
+
+            already_logged = any(
+                item.get('kind') == warning['kind']
+                and item.get('value') == value
+                for item in self.current['reading_warnings']
+            )
+
+            if not already_logged:
+                self.current['reading_warnings'].append(
+                    dict(warning, t=t)
+                )
+
+            enough_readings = (
+                self.damage_filter.n
+                >= max(3, self.damage_filter.count)
+            )
+
+            if not (handover or gap_reset) or not enough_readings:
+                # Crucially, do not change last_value here.
+                # The original number returning must not create an event.
+                return
+
+        enemy_change = (
+            changed
+            and self.current is not None
+            and self.faction == 'enemy'
+        )
+
         self.last_value = value
         self.number_seen = True
-        # Keep old lingering totals, but do not assign a replacement during a
-        # confirmed enemy turn to an ally. Unknown marker evidence stays unknown.
-        if self.faction == 'enemy':
-            if changed:
-                self.finish_event('number_changed_during_enemy_turn')
-            return
-        handover = (self.current is not None and self.pending_actor is not None
-                    and self.action_id != self.current.get('action_id') and changed)
-        if changed and self.actor is None and self.faction == 'ally' and self.current is not None:
-            self.finish_event('number_changed_with_unknown_actor')
-        if handover:
+
+        if gap_reset:
+            self.finish_event('changed_total_after_panel_gap')
+        elif enemy_change:
+            # Keep the damage reading even during an enemy turn.
+            # Its owner may remain unknown.
+            self.finish_event('number_changed_during_enemy_turn')
+        elif handover:
             self.finish_event('actor_handover_and_number_change')
+
+        # Missing portrait recognition alone no longer closes an event.
+        self.resumed_gap = 0.0
         if self.current is None:
             if not changed and not self.blank:
                 return
-            owner = self.pending_actor or self.actor
+            owner = (
+                None
+                if self.faction == 'enemy'
+                else (self.pending_actor or self.actor)
+            )
             self.current = {'id': len(self.events)+1, 'actor': owner,
                             'action_id': self.action_id if owner else None, 'start': t,
                             'last_read': t, 'damage': value, 'stable_updates': 1,
@@ -204,7 +338,11 @@ def scan(args):
     if not templates:
         cap.release(); raise ValueError('Profile has no portraits')
     engine = load_engine(args)
-    tracker = Tracker(args.stable_frames)
+    tracker = Tracker(
+        args.stable_frames,
+        profile.get('panel_gap_seconds', 1.0)
+    )
+    portrait_recovery = PortraitRecovery(profile, args.fps)
     started = time.perf_counter()
     # Sequential decode avoids a separate seek for every sampled frame.
     cap.set(cv2.CAP_PROP_POS_MSEC, args.start*1000)
@@ -244,10 +382,9 @@ def scan(args):
                 scores = sorted(((float(cv2.matchTemplate(portrait, tpl, cv2.TM_CCOEFF_NORMED)[0, 0]), actor)
                                  for actor, tpl in templates.items()), reverse=True)
                 actor = scores[0][1]
-            best = scores[0][0] if scores else -1
-            margin = best-scores[1][0] if len(scores)>1 else best
-            if best < profile.get('portrait_threshold', .65) or margin < profile.get('portrait_margin', .06):
-                actor = None
+            actor, portrait_decision = portrait_recovery.select(
+                t, actor, variant, scores, faction
+            )
             damage = roi(frame, profile['damage_roi'])
             # Yellow number presence, distinct from recognition success.
             hsv = cv2.cvtColor(damage, cv2.COLOR_BGR2HSV)
@@ -263,7 +400,9 @@ def scan(args):
                    'damage': value, 'panel_present': panel_present,
                    'ocr': [{'text': b[4], 'confidence': round(b[5], 4)} for b in boxes],
                    'display_owner': tracker.current['actor'] if tracker.current else None,
-                   'pending_actor': tracker.pending_actor}
+                   'pending_actor': tracker.pending_actor,
+                   'portrait_decision': portrait_decision,
+                   'panel_gap_since': tracker.panel_absent_since,}
             raw.write(json.dumps(row, ensure_ascii=False)+'\n')
             # Save only when the accepted evidence timestamp changes.
             if tracker.current and tracker.current['evidence_t'] == round(t, 4):

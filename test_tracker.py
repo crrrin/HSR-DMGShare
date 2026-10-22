@@ -26,6 +26,7 @@ class TrackerTests(unittest.TestCase):
         self.stable(t,1,None,None)
         self.assertEqual(t.current['damage'],100)
         self.stable(t,2,None,None,False)
+        t.push(3.1,None,None,False)
         self.assertIsNone(t.current)
     def test_single_frame_number_noise_ignored(self):
         t=Tracker()
