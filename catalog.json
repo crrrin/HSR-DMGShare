@@ -1,0 +1,1195 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "id": "1511",
+      "character_id": "1511",
+      "character": "Aeon ★ Aha",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1511.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1503",
+      "character_id": "1503",
+      "character": "Pearl",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1503.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1513",
+      "character_id": "1513",
+      "character": "Aventurine • Waveflair",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1513.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1512",
+      "character_id": "1512",
+      "character": "Robin • Summeretto",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1512.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1508",
+      "character_id": "1508",
+      "character": "Rin Tohsaka",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1508.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1509",
+      "character_id": "1509",
+      "character": "Gilgamesh",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1509.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1510",
+      "character_id": "1510",
+      "character": "Himeko • Nova",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1510.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1507",
+      "character_id": "1507",
+      "character": "Mortenax Blade",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1507.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1505",
+      "character_id": "1505",
+      "character": "Evanescia",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1505.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1506",
+      "character_id": "1506",
+      "character": "Silver Wolf LV.999",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1506.png",
+      "detect_actor": true
+    },
+    {
+      "id": "8009",
+      "character_id": "8009",
+      "character": "Trailblazer",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/8009.png",
+      "detect_actor": true
+    },
+    {
+      "id": "8010",
+      "character_id": "8010",
+      "character": "Trailblazer",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/8010.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1504",
+      "character_id": "1504",
+      "character": "Ashveil",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1504.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1501",
+      "character_id": "1501",
+      "character": "Sparxie",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1501.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1502",
+      "character_id": "1502",
+      "character": "Yao Guang",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1502.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1321",
+      "character_id": "1321",
+      "character": "The Dahlia",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1321.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1415",
+      "character_id": "1415",
+      "character": "Cyrene",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1415.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1414",
+      "character_id": "1414",
+      "character": "Dan Heng • Permansor Terrae",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1414.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1413",
+      "character_id": "1413",
+      "character": "Evernight",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1413.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1412",
+      "character_id": "1412",
+      "character": "Cerydra",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1412.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1410",
+      "character_id": "1410",
+      "character": "Hysilens",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1410.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1014",
+      "character_id": "1014",
+      "character": "Saber",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1014.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1015",
+      "character_id": "1015",
+      "character": "Archer",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1015.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1408",
+      "character_id": "1408",
+      "character": "Phainon",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1408.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1406",
+      "character_id": "1406",
+      "character": "Cipher",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1406.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1409",
+      "character_id": "1409",
+      "character": "Hyacine",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1409.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1405",
+      "character_id": "1405",
+      "character": "Anaxa",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1405.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1407",
+      "character_id": "1407",
+      "character": "Castorice",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1407.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1404",
+      "character_id": "1404",
+      "character": "Mydei",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1404.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1403",
+      "character_id": "1403",
+      "character": "Tribbie",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1403.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1402",
+      "character_id": "1402",
+      "character": "Aglaea",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1402.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1401",
+      "character_id": "1401",
+      "character": "The Herta",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1401.png",
+      "detect_actor": true
+    },
+    {
+      "id": "8007",
+      "character_id": "8007",
+      "character": "Trailblazer",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/8007.png",
+      "detect_actor": true
+    },
+    {
+      "id": "8008",
+      "character_id": "8008",
+      "character": "Trailblazer",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/8008.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1225",
+      "character_id": "1225",
+      "character": "Fugue",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1225.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1313",
+      "character_id": "1313",
+      "character": "Sunday",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1313.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1317",
+      "character_id": "1317",
+      "character": "Rappa",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1317.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1222",
+      "character_id": "1222",
+      "character": "Lingsha",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1222.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1220",
+      "character_id": "1220",
+      "character": "Feixiao",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1220.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1223",
+      "character_id": "1223",
+      "character": "Moze",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1223.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1218",
+      "character_id": "1218",
+      "character": "Jiaoqiu",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1218.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1221",
+      "character_id": "1221",
+      "character": "Yunli",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1221.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1224",
+      "character_id": "1224",
+      "character": "March 7th",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1224.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1314",
+      "character_id": "1314",
+      "character": "Jade",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1314.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1310",
+      "character_id": "1310",
+      "character": "Firefly",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1310.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1315",
+      "character_id": "1315",
+      "character": "Boothill",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1315.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1309",
+      "character_id": "1309",
+      "character": "Robin",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1309.png",
+      "detect_actor": true
+    },
+    {
+      "id": "8005",
+      "character_id": "8005",
+      "character": "Trailblazer",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/8005.png",
+      "detect_actor": true
+    },
+    {
+      "id": "8006",
+      "character_id": "8006",
+      "character": "Trailblazer",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/8006.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1304",
+      "character_id": "1304",
+      "character": "Aventurine",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1304.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1301",
+      "character_id": "1301",
+      "character": "Gallagher",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1301.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1308",
+      "character_id": "1308",
+      "character": "Acheron",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1308.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1312",
+      "character_id": "1312",
+      "character": "Misha",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1312.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1306",
+      "character_id": "1306",
+      "character": "Sparkle",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1306.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1307",
+      "character_id": "1307",
+      "character": "Black Swan",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1307.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1305",
+      "character_id": "1305",
+      "character": "Dr. Ratio",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1305.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1214",
+      "character_id": "1214",
+      "character": "Xueyi",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1214.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1303",
+      "character_id": "1303",
+      "character": "Ruan Mei",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1303.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1215",
+      "character_id": "1215",
+      "character": "Hanya",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1215.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1302",
+      "character_id": "1302",
+      "character": "Argenti",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1302.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1217",
+      "character_id": "1217",
+      "character": "Huohuo",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1217.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1112",
+      "character_id": "1112",
+      "character": "Topaz & Numby",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1112.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1210",
+      "character_id": "1210",
+      "character": "Guinaifen",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1210.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1212",
+      "character_id": "1212",
+      "character": "Jingliu",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1212.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1110",
+      "character_id": "1110",
+      "character": "Lynx",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1110.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1208",
+      "character_id": "1208",
+      "character": "Fu Xuan",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1208.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1213",
+      "character_id": "1213",
+      "character": "Dan Heng • Imbibitor Lunae",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1213.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1005",
+      "character_id": "1005",
+      "character": "Kafka",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1005.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1111",
+      "character_id": "1111",
+      "character": "Luka",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1111.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1205",
+      "character_id": "1205",
+      "character": "Blade",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1205.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1203",
+      "character_id": "1203",
+      "character": "Luocha",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1203.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1207",
+      "character_id": "1207",
+      "character": "Yukong",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1207.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1006",
+      "character_id": "1006",
+      "character": "Silver Wolf",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1006.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1204",
+      "character_id": "1204",
+      "character": "Jing Yuan",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1204.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1001",
+      "character_id": "1001",
+      "character": "March 7th",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1001.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1002",
+      "character_id": "1002",
+      "character": "Dan Heng",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1002.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1003",
+      "character_id": "1003",
+      "character": "Himeko",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1003.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1004",
+      "character_id": "1004",
+      "character": "Welt",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1004.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1008",
+      "character_id": "1008",
+      "character": "Arlan",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1008.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1009",
+      "character_id": "1009",
+      "character": "Asta",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1009.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1013",
+      "character_id": "1013",
+      "character": "Herta",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1013.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1101",
+      "character_id": "1101",
+      "character": "Bronya",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1101.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1102",
+      "character_id": "1102",
+      "character": "Seele",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1102.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1103",
+      "character_id": "1103",
+      "character": "Serval",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1103.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1104",
+      "character_id": "1104",
+      "character": "Gepard",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1104.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1105",
+      "character_id": "1105",
+      "character": "Natasha",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1105.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1106",
+      "character_id": "1106",
+      "character": "Pela",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1106.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1107",
+      "character_id": "1107",
+      "character": "Clara",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1107.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1108",
+      "character_id": "1108",
+      "character": "Sampo",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1108.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1109",
+      "character_id": "1109",
+      "character": "Hook",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1109.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1201",
+      "character_id": "1201",
+      "character": "Qingque",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1201.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1202",
+      "character_id": "1202",
+      "character": "Tingyun",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1202.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1206",
+      "character_id": "1206",
+      "character": "Sushang",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1206.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1209",
+      "character_id": "1209",
+      "character": "Yanqing",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1209.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1211",
+      "character_id": "1211",
+      "character": "Bailu",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/1211.png",
+      "detect_actor": true
+    },
+    {
+      "id": "8001",
+      "character_id": "8001",
+      "character": "Trailblazer",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/8001.png",
+      "detect_actor": true
+    },
+    {
+      "id": "8002",
+      "character_id": "8002",
+      "character": "Trailblazer",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/8002.png",
+      "detect_actor": true
+    },
+    {
+      "id": "8003",
+      "character_id": "8003",
+      "character": "Trailblazer",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/8003.png",
+      "detect_actor": true
+    },
+    {
+      "id": "8004",
+      "character_id": "8004",
+      "character": "Trailblazer",
+      "variant": "base",
+      "kind": "character",
+      "mapping_source": "provided HTML",
+      "file": "assets/portraits/8004.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1510_BE",
+      "character_id": "1510",
+      "character": "Himeko • Nova",
+      "variant": "mecha",
+      "kind": "summon",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1510_BE.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1507_02",
+      "character_id": "1507",
+      "character": "Mortenax Blade",
+      "variant": "enhanced",
+      "kind": "form",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1507_02.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1506_03",
+      "character_id": "1506",
+      "character": "Silver Wolf LV.999",
+      "variant": "enhanced 03",
+      "kind": "form",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1506_03.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1506_02",
+      "character_id": "1506",
+      "character": "Silver Wolf LV.999",
+      "variant": "enhanced 02",
+      "kind": "form",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1506_02.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1505_BE",
+      "character_id": "1505",
+      "character": "Evanescia",
+      "variant": "fox summon",
+      "kind": "summon",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1505_BE.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1414_BE",
+      "character_id": "1414",
+      "character": "Dan Heng • Permansor Terrae",
+      "variant": "dragon summon",
+      "kind": "summon",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1414_BE.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1408_02",
+      "character_id": "1408",
+      "character": "Phainon",
+      "variant": "ultimate enhanced",
+      "kind": "form",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1408_02.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1404_Active",
+      "character_id": "1404",
+      "character": "Mydei",
+      "variant": "active",
+      "kind": "form",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1404_Active.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1404B_Active_Bg",
+      "character_id": "1404",
+      "character": "Mydei",
+      "variant": "enhanced background",
+      "kind": "indicator",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1404B_Active_Bg.png",
+      "detect_actor": false
+    },
+    {
+      "id": "1402D",
+      "character_id": "1402",
+      "character": "Aglaea",
+      "variant": "joint attack",
+      "kind": "joint",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1402D.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1222_BE",
+      "character_id": "1222",
+      "character": "Lingsha",
+      "variant": "bunny summon",
+      "kind": "summon",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1222_BE.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1204Shadow",
+      "character_id": "1204",
+      "character": "Jing Yuan",
+      "variant": "summon",
+      "kind": "summon",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1204Shadow.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1112_BE",
+      "character_id": "1112",
+      "character": "Topaz & Numby",
+      "variant": "summon",
+      "kind": "summon",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1112_BE.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1150501",
+      "character_id": "1505",
+      "character": "Evanescia",
+      "variant": "skin",
+      "kind": "skin",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1150501.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1150101",
+      "character_id": "1501",
+      "character": "Sparxie",
+      "variant": "skin",
+      "kind": "skin",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1150101.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1140901",
+      "character_id": "1409",
+      "character": "Hyacine",
+      "variant": "skin",
+      "kind": "skin",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1140901.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1140701",
+      "character_id": "1407",
+      "character": "Castorice",
+      "variant": "skin",
+      "kind": "skin",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1140701.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1131001",
+      "character_id": "1310",
+      "character": "Firefly",
+      "variant": "skin",
+      "kind": "skin",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1131001.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1130301",
+      "character_id": "1303",
+      "character": "Ruan Mei",
+      "variant": "skin",
+      "kind": "skin",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1130301.png",
+      "detect_actor": true
+    },
+    {
+      "id": "1100101",
+      "character_id": "1001",
+      "character": "March 7th",
+      "variant": "skin",
+      "kind": "skin",
+      "mapping_source": "user supplied",
+      "file": "assets/portraits/1100101.png",
+      "detect_actor": true
+    }
+  ]
+}
