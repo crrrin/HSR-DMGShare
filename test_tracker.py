@@ -11,6 +11,7 @@ class TrackerTests(unittest.TestCase):
         self.stable(t,1,'The Dahlia',491203)
         self.assertEqual(t.current['actor'],'Firefly')
         self.stable(t,2,'The Dahlia',171619)
+        t.push(2.2,'The Dahlia',171619,True)
         self.assertEqual(t.events[0]['damage'],491203)
         self.assertEqual(t.current['actor'],'The Dahlia')
     def test_higher_new_total_also_hands_over(self):
@@ -54,18 +55,28 @@ class TurnTests(unittest.TestCase):
         self.assertEqual([(e['actor'],e['damage']) for e in t.events],[('A',100)])
         self.assertFalse(next(a for a in t.actions if a['actor']=='B')['damage_observed'])
         self.assertEqual(t.current['actor'],'C')
-    def test_enemy_clears_pending_actor(self):
-        t=Tracker()
+    def test_enemy_numbers_are_retained_without_inventing_owner(self):
+        t = Tracker()
+
         self.stable(t,0,'A',100)
         self.stable(t,1,'B',100)
         self.stable(t,2,None,100,'enemy')
         self.assertIsNone(t.pending_actor)
+
         self.stable(t,3,None,800,'enemy')
-        self.assertIsNone(t.current)
+        self.assertIsNone(t.current['actor'])
+        self.assertEqual(t.current['damage'],800)
+        self.assertEqual(t.events[0]['damage'],100)
+
+        # A later portrait must not inherit the lingering number.
         self.stable(t,4,'C',800)
-        self.assertIsNone(t.current)
+        self.assertIsNone(t.current['actor'])
+
+        # A confirmed replacement can belong to C.
         self.stable(t,5,'C',200)
+        t.push(5.2,'C',200,True)
         self.assertEqual(t.current['actor'],'C')
+        self.assertEqual(t.current['damage'],200)
     def test_same_actor_after_enemy_is_new_action(self):
         t=Tracker()
         self.stable(t,0,'A',100)
