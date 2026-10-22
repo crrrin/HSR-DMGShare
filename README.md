@@ -16,7 +16,7 @@ Python 3.11 is the suggested local environment; this release was exercised on Py
 ## Scan a video
 
 ```powershell
-.\.venv\Scripts\python.exe damage_share.py "C:\Users\Dhanish\Videos\battle.mp4" --team 1310 1321 --output work/test1
+.\.venv\Scripts\python.exe damage_share.py "C:\Users\<User>\Videos\battle.mp4" --team 1310 1321 --output work/test1
 ```
 
 The example team IDs are Firefly and The Dahlia. Replace them with your team; one to four character IDs or quoted names can be supplied. Names must match `catalog.json`, including punctuation. The requested team's skins, enhanced forms and summons are included automatically, and totals aggregate to the parent character.
@@ -32,7 +32,7 @@ Output timestamps stay relative to the original file. Use a new or empty output 
 Optional reviewbot OCR backend:
 
 ```powershell
-.\.venv\Scripts\python.exe damage_share.py "C:\Videos\battle.mp4" --team 1310 1321 --backend reviewbot --reviewbot-root "C:\Users\Dhanish\Downloads\reviewbot-local" --model latin --output work/test3
+.\.venv\Scripts\python.exe damage_share.py "C:\Videos\battle.mp4" --team 1310 1321 --backend reviewbot --reviewbot-root "C:\Users\<User>\Downloads\reviewbot-local" --model latin --output work/test3
 ```
 
 It loads `auto/ocr.py` and requires the reviewbot's installed models. This adapter was retained but not exercised here. The default standalone backend uses RapidOCR's bundled models.
