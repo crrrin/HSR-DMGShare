@@ -12,7 +12,7 @@ import sys
 import subprocess
 import time
 
-VERSION = '0.1.6'
+VERSION = '0.1.7'
 
 
 def roi(frame, box):
@@ -157,6 +157,7 @@ class Tracker:
         self.panel_absent_since = None
         self.resumed_gap = 0.0
         self.recent_ally = None
+        self.number_origins = {}
 
     def finish_event(self, reason):
         if self.current is not None:
@@ -204,6 +205,51 @@ class Tracker:
         if value is None:
             self.damage_filter.push('unreadable')
             return
+        # Remember where this number first appeared, even if it is held.
+        origin = self.number_origins.get(value)
+
+        if (
+            origin is None
+            or t - origin['last_seen'] > self.panel_gap_seconds
+        ):
+            origin = {
+                'value': value,
+                'first_seen': t,
+                'last_seen': t,
+                'faction': faction,
+                'actor': actor if faction == 'ally' else None,
+                'preceding_ally': (
+                    dict(self.recent_ally)
+                    if self.recent_ally else None
+                ),
+            }
+            self.number_origins[value] = origin
+        else:
+            origin['last_seen'] = t
+
+        self.number_origins = {
+            number: evidence
+            for number, evidence in self.number_origins.items()
+            if t - evidence['last_seen'] <= self.panel_gap_seconds
+        }
+
+        before = origin.get('preceding_ally')
+
+        if (
+            origin['faction'] == 'unknown'
+            and before is not None
+            and faction == 'ally'
+            and actor is not None
+            and actor == self.pending_actor == before['actor']
+            and 0 <= origin['first_seen'] - before['t'] <= .3
+            and 0 <= t - origin['first_seen'] <= .3
+        ):
+            origin.update(
+                faction='ally',
+                actor=actor,
+                recovered_from_unknown=True,
+            )
+
         if not self.damage_filter.push(value):
             return
         candidate = (
@@ -222,8 +268,15 @@ class Tracker:
             and actor == self.actor == candidate['actor']
             and value == self.current['damage']
         ):
+            if self.current.get('damage_faction') == 'enemy':
+                self.current['reading_warnings'].append({
+                    't': t,
+                    'kind': 'marker_conflict_recovered_same_ally',
+                })
+
             self.current.update(
                 actor=actor,
+                damage_faction='ally',
                 action_id=self.action_id,
                 attribution='same_ally_before_and_after_marker_loss',
             )
@@ -238,7 +291,9 @@ class Tracker:
 
         handover = (
             self.current is not None
-            and self.pending_actor is not None
+            and origin['faction'] == 'ally'
+            and origin['actor'] is not None
+            and self.pending_actor == origin['actor']
             and self.action_id != self.current.get('action_id')
             and changed
         )
@@ -275,7 +330,11 @@ class Tracker:
                 >= max(3, self.damage_filter.count)
             )
 
-            if not (handover or gap_reset) or not enough_readings:
+            enemy_replacement = origin['faction'] == 'enemy'
+
+            if not (
+                handover or gap_reset or enemy_replacement
+            ) or not enough_readings:
                 # Crucially, do not change last_value here.
                 # The original number returning must not create an event.
                 return
@@ -283,7 +342,11 @@ class Tracker:
         enemy_change = (
             changed
             and self.current is not None
-            and self.faction == 'enemy'
+            and origin['faction'] == 'enemy'
+            and (
+                self.current.get('damage_faction') != 'enemy'
+                or value < self.current['damage']
+            )
         )
 
         self.last_value = value
@@ -304,9 +367,17 @@ class Tracker:
             if not changed and not self.blank:
                 return
             owner = (
-                None
-                if self.faction == 'enemy'
-                else (self.pending_actor or self.actor)
+                origin['actor']
+                if origin['faction'] == 'ally'
+                else None
+            )
+
+            damage_faction = (
+                'enemy'
+                if origin['faction'] == 'enemy'
+                else 'ally'
+                if owner is not None
+                else 'unknown'
             )
             self.current = {'id': len(self.events)+1, 'actor': owner,
                             'action_id': self.action_id if owner else None, 'start': t,
@@ -318,7 +389,12 @@ class Tracker:
                                 dict(self.recent_ally)
                                 if self.recent_ally else None
                             )}
-            if owner is None:
+            self.current['damage_faction'] = damage_faction
+            self.current['number_origin'] = dict(origin)
+
+            if damage_faction == 'enemy':
+                self.current['attribution'] = 'red_marker_at_number_onset'
+            if owner is None and damage_faction != 'enemy':
                 self.current['attribution'] = 'unattributed'
             for action in self.actions:
                 if action['action_id'] == self.current['action_id']:
@@ -458,9 +534,14 @@ def scan(args):
     tracker.finish_event('interval_end')
     totals = dict.fromkeys(templates, 0)
     unknown = 0
+    enemy_damage = 0
+    enemy_event_count = 0
     with (args.output/'damage_events.jsonl').open('w', encoding='utf8') as f:
         for event in tracker.events:
-            if event['actor'] in totals:
+            if event.get('damage_faction') == 'enemy':
+                enemy_damage += event['damage']
+                enemy_event_count += 1
+            elif event['actor'] in totals:
                 totals[event['actor']] += event['damage']
             else:
                 unknown += event['damage']
@@ -479,6 +560,8 @@ def scan(args):
                'team': args.team,
                'catalog_sha256': hashlib.sha256((args.profile.parent/profile['catalog']).read_bytes()).hexdigest() if 'catalog' in profile else None,
                'characters': rows, 'unattributed_damage': unknown, 'detected_damage_total': total_damage,
+               'enemy_damage': enemy_damage,
+               'enemy_event_count': enemy_event_count,
                'event_count': len(tracker.events), 'performance': {'sampled_frames': sampled,
                'ocr_calls': ocr_calls, 'elapsed_seconds': round(time.perf_counter()-started, 3)},
                'limitations': ['Shares concern detected action-panel totals, not independently verified true damage.',
