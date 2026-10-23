@@ -413,6 +413,12 @@ def scan(args):
     import cv2
     import numpy as np
     profile = json.loads(args.profile.read_text(encoding='utf-8-sig'))
+
+    for name in ('actor_roi', 'marker_roi', 'damage_roi'):
+        override = getattr(args, name, None)
+        if override is not None:
+            profile[name] = list(override)
+
     for name in ('actor_roi', 'damage_roi') + (('marker_roi',) if 'marker_roi' in profile else ()):
         box = profile[name]
         if (len(box) != 4 or not all(type(x) in (int, float) and math.isfinite(x) for x in box)
@@ -557,6 +563,11 @@ def scan(args):
     summary = {'version': VERSION, 'status': 'EXPERIMENTAL_REVIEW_REQUIRED',
                'video': str(args.video), 'range': [args.start, end],
                'profile_sha256': hashlib.sha256(args.profile.read_bytes()).hexdigest(),
+               'effective_rois': {
+                   name: profile[name]
+                   for name in ('actor_roi', 'marker_roi', 'damage_roi')
+                   if name in profile
+               },
                'team': args.team,
                'catalog_sha256': hashlib.sha256((args.profile.parent/profile['catalog']).read_bytes()).hexdigest() if 'catalog' in profile else None,
                'characters': rows, 'unattributed_damage': unknown, 'detected_damage_total': total_damage,
@@ -596,6 +607,16 @@ def main():
     p.add_argument('--team', nargs='+', default=[], help='Character IDs or quoted names for asset profile')
     p.add_argument('--model', default='latin')
     p.add_argument('--reviewbot-root', type=Path, default=Path(__file__).resolve().parent.parent)
+
+    for zone in ('actor', 'marker', 'damage'):
+        p.add_argument(
+            f'--{zone}-roi',
+            type=float,
+            nargs=4,
+            metavar=('X1', 'Y1', 'X2', 'Y2'),
+            help=f'Override {zone} region with normalized coordinates',
+        )
+    
     a = p.parse_args()
     if (not math.isfinite(a.fps) or not 0<a.fps<=120 or a.stable_frames<2
             or not math.isfinite(a.start) or a.start<0 or not 0<=a.ocr_confidence<=1
